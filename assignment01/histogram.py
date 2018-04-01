@@ -26,14 +26,6 @@ def histogram_equalize(input_img):
         for j in range(0, input_img.shape[1]):
             output_img[i][j] = int(round(new_cdf[img[i][j]] * 255))
 
-    # limit pixels to greyscale from 0 ~ 255
-    for i in range(0, input_img.shape[0]):
-        for j in range(0, input_img.shape[1]):
-            if output_img[i][j] < 0:
-                output_img[i][j] = 0
-            elif output_img[i][j] > 256:
-                output_img[i][j] = 256
-
     return output_img
 
 
