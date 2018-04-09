@@ -21,7 +21,7 @@ for i in range(0, img.shape[0]):
             mean_sum = 0
             for a in range(0, mask.shape[0]):
                 for b in range(0, mask.shape[1]):
-                    mean_sum = mean_sum + mask[-1+a][-1+b] * img[i-1+a][j-1+b]
+                    mean_sum = mean_sum + mask[a][b] * img[i-1+a][j-1+b]
 
             output[i][j] = int(mean_sum / divide)
 
