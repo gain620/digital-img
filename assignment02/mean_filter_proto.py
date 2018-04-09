@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 mask = np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])  # mean filter
 
-divide = 9.0
+divide = mask.size
 
 read = misc.imread('sample.jpg')
 img = np.array(read, dtype=np.int32)
