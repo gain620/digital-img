@@ -33,12 +33,13 @@ def mean_filter(input_img, kernel):
     return output_img
 
 
-mask = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]])  # weighted mean filter
+if __name__ == "__main__":
+    mask = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]])  # weighted mean filter
 
-read = misc.imread('sample.jpg')
-img = np.array(read, dtype=np.int32)
-new_img = mean_filter(img, mask)
+    read = misc.imread('sample.jpg')
+    img = np.array(read, dtype=np.int32)
+    new_img = mean_filter(img, mask)
 
-misc.imsave('weighted_mean_filter.jpg', new_img)
-plt.imshow(new_img, cmap='gray')
-plt.show()
+    misc.imsave('weighted_mean_filter.jpg', new_img)
+    plt.imshow(new_img, cmap='gray')
+    plt.show()

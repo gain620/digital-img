@@ -32,14 +32,15 @@ def mean_filter(input_img, kernel):
     return output_img
 
 
-# laplacian_mask = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])  # laplacian mask
-unsharp_mask_1 = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])  # unsharp mask1
-# unsharp_mask_2 = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])  # unsharp mask2
+if __name__ == "__main__":
+    # laplacian_mask = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])  # laplacian mask
+    unsharp_mask_1 = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])  # unsharp mask1
+    # unsharp_mask_2 = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])  # unsharp mask2
 
-read = misc.imread('sample.jpg')
-img = np.array(read, dtype=np.int32)
-new_img = mean_filter(img, unsharp_mask_1)
+    read = misc.imread('sample.jpg')
+    img = np.array(read, dtype=np.int32)
+    new_img = mean_filter(img, unsharp_mask_1)
 
-misc.imsave('unsharp_mask_filter.jpg', new_img)
-plt.imshow(new_img, cmap='gray')
-plt.show()
+    misc.imsave('unsharp_mask_filter.jpg', new_img)
+    plt.imshow(new_img, cmap='gray')
+    plt.show()
