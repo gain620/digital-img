@@ -2,19 +2,9 @@ import numpy as np
 from scipy import misc
 import matplotlib.pyplot as plt
 
-mask = np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])  # mean filter
+mask = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]])  # weighted filter
 
-divide = mask.size
-
-
-def limit(input_val):
-    if input_val > 255:
-        input_val = 255
-    elif input_val[i][j] < 0:
-        input_val[i][j] = 0
-
-    return input_val
-
+divide = mask.sum()
 
 read = misc.imread('sample.jpg')
 img = np.array(read, dtype=np.int32)
@@ -35,6 +25,6 @@ for i in range(0, img.shape[0]):
 
             output[i][j] = int(mean_sum / divide)
 
-misc.imsave('mean_filter.jpg', output)
+misc.imsave('weighted_mean_filter.jpg', output)
 plt.imshow(output, cmap='gray')
 plt.show()

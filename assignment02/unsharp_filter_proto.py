@@ -2,16 +2,16 @@ import numpy as np
 from scipy import misc
 import matplotlib.pyplot as plt
 
-mask = np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])  # mean filter
-
-divide = mask.size
+#laplacian_mask = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])  # laplacian mask
+unsharp_mask_1 = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])  # unsharp mask1
+#unsharp_mask_2 = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])  # unsharp mask2
 
 
 def limit(input_val):
     if input_val > 255:
         input_val = 255
-    elif input_val[i][j] < 0:
-        input_val[i][j] = 0
+    elif input_val < 0:
+        input_val = 0
 
     return input_val
 
@@ -29,12 +29,12 @@ for i in range(0, img.shape[0]):
             output[i][j] = img[i][j]
         else:
             mean_sum = 0
-            for a in range(0, mask.shape[0]):
-                for b in range(0, mask.shape[1]):
-                    mean_sum = mean_sum + mask[a][b] * img[i-1+a][j-1+b]
+            for a in range(0, unsharp_mask_1.shape[0]):
+                for b in range(0, unsharp_mask_1.shape[1]):
+                    mean_sum = mean_sum + unsharp_mask_1[a][b] * img[i-1+a][j-1+b]
 
-            output[i][j] = int(mean_sum / divide)
+            output[i][j] = limit(mean_sum)
 
-misc.imsave('mean_filter.jpg', output)
+misc.imsave('unsharp_mask_filter.jpg', output)
 plt.imshow(output, cmap='gray')
 plt.show()
